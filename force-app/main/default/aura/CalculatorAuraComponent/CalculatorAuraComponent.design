@@ -1,0 +1,4 @@
+<design:component >
+    <lightning:icon iconName="action:approval" alternativeText="Approved" title="Approved" />
+
+</design:component>

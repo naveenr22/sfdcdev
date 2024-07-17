@@ -1,0 +1,67 @@
+public class testCallOutExmaple{
+            public String TARGET_BASE_URL = 'https://cloudcraft2-dev-ed.develop.my.salesforce.com'
+            public string getAccessToken (){
+                String clientId = '3MVG9X13BC6VHB. Z. uuQ1EccfNYYI208.MAAoSHISbpJMJ5ExDYz5cRWX2PEqiVi.BoikdUwYxEWpVbCWIsIK';
+                String clientSecret = '6AC94C5E24606029D649E7F3D97D7F0793043AF6418052EB938F4BA97AD86A';
+                String username = anil.batch30@gmail.com';
+                String password = 'batch30@123mRc2SUZrWIJsngf1K9pkFmKkx';
+                String reqbody = 'grant_type=password'+'&client_id='+clientId+'&client_secret='+clientSecret+'&username='+username+'&password='+password;
+                Http h1 = new Http();
+                HttpRequest req = new HttpRequest ();
+                req. setBody (reqbody);
+                req. setMethod( 'POST');
+                req.setEndpoint('https://cloudcraft2-dev-ed.develop.my.salesforce.com/services/oauth2/token');
+                HttpResponse res = h1. send (req);
+                System.debug('res body :::::: "+res.getBody());
+                resWrapper response = (resWrapper) JSON.deserialize(res.getBody () , resWrapper.class) ;
+                System. debug ('response--->>>'+response);
+                return response. access_token;
+            }
+            public class resWrapper{
+                public String id;
+                public String access_token;
+}
+// Example method to fetch data from the target environment
+public String fetchDataFromTargetEnvironment () {
+    String endpointUrl = TARGET_BASE_URL + '/services/data/v56.0/sobjects/Account/';
+    HttpRequest request = new HttpRequest );
+    Http ht = new Http() :
+    request.setEndpoint (endpointUrl);
+    request.setMethod( 'GET');
+    request.setHeader ('Authorization', 'Bearer ' + getAccessToken () );
+    request. setHeader ('Content-Type', 'application/json');
+    HttpResponse response = ht.send(request);
+    if (response.getStatusCode () == 200) {
+    return response.getBody);
+    } else {
+    return 'Error: ' + response.getStatusCode () + '
+    " + response. getStatus ();
+}
+}
+/**
+* testCallOutExmaple tc = new testCallOutExmaple();
+* String accountName = 'Test Account through API';
+* String accountPhone = '5105656665';
+* String body = '{"'Name": "' + accountName + '", "Phone": "' + accountPhone + *"}';
+* String s = tc.createDataInTargetEnvironment (body);
+*/
+// Example method to to create data to the target environment
+public String createDataInTargetEnvironment (String body) {
+    String endpointUrl = TARGET_BASE_URL + '/services/data/v56.0/sobjects/Account/';
+    HttpRequest request = new HttpRequest ();
+    Http ht = new Http();
+    request.setEndpoint (endpointUrl);
+    request.setMethod ( 'POST');
+    request.setHeader ( 'Authorization', , 'Bearer ' + getAccessToken ()) ;
+    request.setHeader ('Content-Type', 'application/json');
+    System.debug ('Body :::: '+body);
+    request.setBody (body);
+    HttpResponse response = ht.send (request);
+    if (response.getStatusCode () == 200) {
+    return response.getBody);
+    } else {
+    return 'Error: ' + response.getStatusCode () + '
+    ' + response.getStatus ();
+}
+}
+}

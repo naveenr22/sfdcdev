@@ -1,0 +1,9 @@
+<template>
+    <div>
+        <input type="text" placeholder="Enter city" onchange={handleCityChange}></input>
+        <button onclick={fetchWeather}>Get Weather</button>
+    </div>
+    <div>
+        {weatherData}
+    </div>
+</template>

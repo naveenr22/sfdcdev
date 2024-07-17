@@ -1,0 +1,25 @@
+<aura:component controller = "fetchAccountsController" implements="force:appHostable, flexipage:availableForAllPageTypes,
+                                                                    flexipage:availableForRecordHome,force:hasRecordId,
+                                                                    forceCommunity:availableForAllPageTypes, 
+                                                                    force:lightningQuickAction" access="global" >
+    <aura:attribute type ="Account[]" name = "listAcc" />
+    <aura:handler name="init" value="{!this}" action="{!c.retriveAccounts}"/>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead> 
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Name">Account Name</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.listAcc}" var="a">
+                <tr> 
+                    <td data-label="Account Name">
+                        <div class="slds-truncate" title="{!a.Name}">{!a.Name}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

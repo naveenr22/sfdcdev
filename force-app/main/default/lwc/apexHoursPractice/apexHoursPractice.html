@@ -1,0 +1,28 @@
+<template>
+   <!---by using Expression-->
+  <!-----
+        <lightning-card  variant="Narrow"  title="Data Binding" icon-name="standard:account">
+            <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+            <p class="slds-p-horizontal_small">Hello, {myVal}!</p>
+            <p slot="footer">Created by Naveen</p>
+        </lightning-card>
+        <br/>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Enter some text" value={myVal} onchange={handleChange}></lightning-input>
+        </div>
+    ------------>
+<!---by using getterProperties-->
+<lightning-card  variant="Narrow"  title="By getterExpression" icon-name="standard:account">
+    <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+    <p class="slds-p-horizontal_small">Hello, {uppercaseName}!</p>
+    <p slot="footer">Created by Naveen</p>
+</lightning-card>
+
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-input type="text" name="FirstName" label="FirstName"  onchange={handleChange}></lightning-input>
+        <br/>
+        <lightning-input type="text" name="LastName" label="LastName"  onchange={handleChange}></lightning-input>
+    </div>
+
+
+</template>

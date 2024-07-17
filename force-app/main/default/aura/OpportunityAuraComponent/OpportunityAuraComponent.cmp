@@ -1,0 +1,26 @@
+<aura:component controller="OpportunityController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="oppList" type="Opportunity[]" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+            <tr class="slds-text-title--caps">
+                <th scope="col"><div class="slds-truncate" title="Opportunity Name">Opportunity Name</div></th>
+                <th scope="col"><div class="slds-truncate" title="Stage Name">Stage Name</div></th>
+                <th scope="col"><div class="slds-truncate" title="Closed Date">Closed Date</div></th>
+                <th scope="col"><div class="slds-truncate" title="Probability">Probability</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.oppList}" var="opp">
+                <tr>
+                    <td> <div class="slds-truncate">{!opp.Name}</div> </td>
+                    <td> <div class="slds-truncate">{!opp.StageName}</div> </td>
+                    <td> <div class="slds-truncate">{!opp.CloseDate}</div> </td>
+                    <td> <div class="slds-truncate">{!opp.Probability}</div> </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

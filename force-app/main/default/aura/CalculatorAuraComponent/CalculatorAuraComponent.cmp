@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="mathsMarks" type="Integer" />
+    <aura:attribute name="phyMarks" type="Integer" />
+    <aura:attribute name="chemMarks" type="Integer" />
+    <aura:attribute name="result" type="integer"/>
+
+    <ui:inputNumber label="Enter Marks in Maths" aura:id="math" value="{!v.mathsMarks}"/>
+    <ui:inputNumber label="Enter Marks in Physics" aura:id="phy" value="{!v.phyMarks}"/>
+    <ui:inputNumber label="Enter Marks in Chemistry" aura:id="chem" value="{!v.chemMarks}"/>
+
+    <lightning:button label="Total" onclick="{!c.calculateTotal}" variant="brand" class="slds-m-top--medium"/>
+    <lightning:button label="Average" variant="brand" class="slds-m-top--medium"/>
+    <lightning:button label="Maximum" variant="brand" class="slds-m-top--medium"/>
+    <lightning:button label="Minimum" variant="brand" class="slds-m-top--medium" />
+
+    <ui:outputNumber aura:id="res" value="{!v.result}"/>
+</aura:component>

@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable, flexipage:availableForAllPageTypes,
+    flexipage:availableForRecordHome, force:hasRecordId, force:LightningQuickAction" access="global">
+    <aura:registerEvent name="sampleComponent" type="c:SampleEvent"/>
+    <aura:attribute name="enteredText" type="String"/>
+    <div class="slds-box slds-p-around_medium">
+        <h2>This is Child Component</h2>
+        <lightning:input label="Enter Name : " value="{!v.enteredText}" aura:id="enteredTextId"/>
+        <lightning:button class="slds-m-top_small" variant="brand" label="Pass Value To Parent"
+                          title="Click Here" onclick="{!c.handleClick}"/>
+    </div>
+</aura:component>

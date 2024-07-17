@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable, flexipage:availableForAllPageTypes,
+flexipage:availableForRecordHome, force:hasRecordId, forceCommunity:availableForAllPageTypes,
+force:LightningQuickAction" access="global" >
+
+    <aura:attribute name="parentValue" type="String" />
+    <aura:handler name="sampleComponent" event="c:SampleEvent" action="{!c.handleComponentEvent}"/>
+
+    <h1>Hello, I am Parent Component</h1>
+    <div class="slds-p-around_medium 1gc-bg">
+        <lightning:input type="text" label="Pass the Value to Child" value="{!v.parentValue}">
+        </lightning:input>
+    </div>
+    <br/>
+    <br/>
+    <c:ChildComponent childValue="{!v.parentValue}" />
+</aura:component>

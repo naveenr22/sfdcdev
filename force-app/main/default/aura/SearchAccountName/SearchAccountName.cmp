@@ -1,0 +1,58 @@
+<aura:component controller="searchAccountController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+access="global">
+    <aura:attribute name="searchKeyword" type="String" description="gives the information about the search string"/>
+    <aura:attribute name="resultAccList" type="Account[]" description="It gives the account result"/>
+    <aura:attribute name="errorMessage" type="Boolean" description="Gives the information about the error message"/>
+    <aura:attribute name="total" type="Integer" description="Total number of records in result set"/>
+
+    <div class="slds-m-around--large">
+        <form class="slds-form--inline">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="search">Account Name: </label>
+                <div class="slds-form-element__control">
+                    <ui:inputText aura:id="searchId" class="slds-input" value="{!v.searchKeyword}" placeholder=" Type here..."/>
+                </div>
+                <button type="button" onclick="{!c.searchAccounts}" class="slds-button slds-button--brand">Search</button>
+            </div>
+        </form>
+        
+        <aura:if isTrue="{!v.errorMessage}">
+            <div class="slds-text-color--error">No Records Found...</div>
+        </aura:if>
+
+        <button type="button" onclick="{!c.createNewAccount}" class="slds-button slds-button--brand">Create New Account</button>
+        
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-title--caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Industry">Industry</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Phone">Phone</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.resultAccList}" var="accRec">
+                    <tr>
+                        <td> 
+                            <div class="slds-truncate">
+                                <a href="{!'/one/one.app?#/sObject/'+ accRec.Id + '/view'}" target="_blank">{!accRec.Name}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{!accRec.Industry}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate">{!accRec.Phone}</div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>
